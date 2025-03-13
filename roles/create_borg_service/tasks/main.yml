@@ -1,0 +1,25 @@
+---
+- name: create borg-backup.service
+  ansible.builtin.template:
+    src: borg-backup.service
+    dest: /etc/systemd/system/
+
+- name: create borg-backup.timer
+  ansible.builtin.template:
+    src: borg-backup.timer
+    dest: /etc/systemd/system/
+
+- name: Enable a timer unit 
+  ansible.builtin.systemd_service:
+    name: borg-backup.timer
+    state: started
+    enabled: true
+    daemon_reload: true
+  
+- name: start borg-backup.service 
+  ansible.builtin.systemd_service:
+    name: borg-backup.service
+    state: started
+  
+    
+    

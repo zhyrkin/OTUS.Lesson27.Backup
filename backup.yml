@@ -1,0 +1,98 @@
+---
+- name: Lesson 27. Config backup server
+  hosts: server
+  gather_facts: false
+
+  vars: #укажем диск и директорию для бекапов
+    disk: sdb 
+    path: /var/backup/ 
+    fstype: ext4 
+
+  vars_prompt:
+    - name: password
+      prompt: Create borg password
+      private: true
+      encrypt: sha512_crypt
+      confirm: true
+      salt_size: 7
+
+
+  roles:
+    - role: mount_point 
+    - role: install_borgbackup
+    - role: create_user_borg
+  
+
+- name: Lesson 27. Config client
+  hosts: client
+  gather_facts: false
+
+  vars: 
+    path: /var/backup/ #Продублируем папку для бекапов на сервере
+    ssh_key_path: "/root/.ssh/id_rsa.pub"
+
+  roles:
+    - role: install_borgbackup
+  post_tasks:
+    - name: Generate an OpenSSH keypair
+      community.crypto.openssh_keypair:
+        path: "/root/.ssh/id_rsa"
+        size: 2048
+
+- name: Copy ssh from client to backup server
+  hosts: server
+  gather_facts: true
+  roles:
+    - role: ssh_key
+      vars:
+        target_user: borg
+
+- name: Shell commands
+  hosts: client
+  gather_facts: false
+
+  vars: 
+    path: /var/backup/{{ inventory_hostname }} #Продублируем папку для бекапов на сервере
+  
+  environment:
+    BORG_PASSPHRASE: Otus1234
+    REPO: borg@192.168.11.160:/var/backup/{{ inventory_hostname }}
+    BACKUP_TARGET: /etc
+  
+  pre_tasks:
+    - name: register fingerprint
+      ansible.builtin.shell:
+        "ssh-keyscan {{ hostvars['server']['ansible_host'] }}  >> ~/.ssh/known_hosts"
+
+  roles:
+    - role: create_borg_service
+
+
+
+
+
+#     - name: register fingerprint
+#       ansible.builtin.shell:
+#         "ssh-keyscan {{ hostvars['server']['ansible_host'] }}  >> ~/.ssh/known_hosts"
+
+#     - name: init repo
+#       ansible.builtin.command:
+#         "borg init --encryption=repokey borg@{{ hostvars['server']['ansible_host'] }}:{{ path }}"
+#       ignore_errors: yes
+#       environment:
+#         BORG_PASSPHRASE: Otus1234
+
+# #     - name: Create first backup
+# #       ansible.builtin.shell:
+# #         "borg create --stats --list borg@{{ hostvars['server']['ansible_host'] }}:{{ path }}::'etc-{now:%Y-%m-%d_%H:%M:%S}' /etc"
+# #       ignore_errors: yes
+
+# #     - name: Show backup
+# #       ansible.builtin.shell:
+# #         "borg list borg@{{ hostvars['server']['ansible_host'] }}:{{ path }}"
+# #       ignore_errors: yes  
+      
+    
+    
+    
+    

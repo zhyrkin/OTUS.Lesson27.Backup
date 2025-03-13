@@ -1,0 +1,10 @@
+---
+- name: apt update
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: install borgbackup
+  ansible.builtin.apt:
+    name: borgbackup
+    state: latest

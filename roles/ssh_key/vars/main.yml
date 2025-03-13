@@ -1,0 +1,4 @@
+---
+source_server: "{{ hostvars['client']['ansible_host'] }}"
+target_user: "borg"
+ssh_key_path: "/root/.ssh/id_rsa.pub"

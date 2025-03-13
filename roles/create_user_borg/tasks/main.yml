@@ -1,0 +1,22 @@
+---
+- name: Add the user borg 
+  ansible.builtin.user:
+    name: borg
+    password: '{{ password }}'
+    shell: /bin/bash
+
+- name: create .ssh folder
+  ansible.builtin.file:
+    path: '/home/borg/.ssh'
+    mode: '0700'
+    owner: borg
+    group: borg
+    state: directory
+
+- name: Create backup folder
+  ansible.builtin.file:
+    path: /var/backup/
+    mode: '0700'
+    owner: borg
+    group: borg
+    state: directory

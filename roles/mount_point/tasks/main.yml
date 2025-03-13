@@ -1,0 +1,19 @@
+---
+- name: create dir
+  ansible.builtin.file:
+    path: '{{ path }}'
+    state: directory
+    mode: '0644'
+
+- name: Create filesystem on parts
+  community.general.filesystem:
+    fstype: '{{ fstype }}'
+    dev: '/dev/{{ disk }}'
+
+- name: mount new part
+  ansible.posix.mount:
+    path: '{{ path }}'
+    src: '/dev/{{ disk }}'
+    fstype: '{{ fstype }}'
+    state: mounted
+    
