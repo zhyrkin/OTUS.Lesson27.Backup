@@ -21,45 +21,45 @@ borg ни в какую не хочет использовать перемен�
 
 
 2) Логгирование процесса или причины неудач отлично отображается в журнале, поэтому не вижу смысла логгировать дополнительно процесс в syslog
-мар 13 19:49:45 deb12 systemd[1]: Starting borg-backup.service - Borg Backup...
-░░ Subject: Начинается запуск юнита borg-backup.service
-░░ Defined-By: systemd
-░░ Support: https://www.debian.org/support
-░░ 
-░░ Начат процесс запуска юнита borg-backup.service.
-мар 13 19:49:48 deb12 borg[12641]: ------------------------------------------------------------------------------
-мар 13 19:49:48 deb12 borg[12641]: Repository: ssh://borg@10.200.3.95/var/backup/client
-мар 13 19:49:48 deb12 borg[12641]: Archive name: etc-2025-03-13_19:49:45
-мар 13 19:49:48 deb12 borg[12641]: Archive fingerprint: fcd36df82c4ba6902fe7c74b726657edadec7c497de302ba8e6a7d577a8c12a1
-мар 13 19:49:48 deb12 borg[12641]: Time (start): Thu, 2025-03-13 19:49:46
-мар 13 19:49:48 deb12 borg[12641]: Time (end):   Thu, 2025-03-13 19:49:47
-мар 13 19:49:48 deb12 borg[12641]: Duration: 0.83 seconds
-мар 13 19:49:48 deb12 borg[12641]: Number of files: 504
-мар 13 19:49:48 deb12 borg[12641]: Utilization of max. archive size: 0%
-мар 13 19:49:48 deb12 borg[12641]: ------------------------------------------------------------------------------
-мар 13 19:49:48 deb12 borg[12641]:                        Original size      Compressed size    Deduplicated size
-мар 13 19:49:48 deb12 borg[12641]: This archive:                2.07 MB            928.62 kB            926.20 kB
-мар 13 19:49:48 deb12 borg[12641]: All archives:                2.06 MB            928.00 kB            980.44 kB
-мар 13 19:49:48 deb12 borg[12641]:                        Unique chunks         Total chunks
-мар 13 19:49:48 deb12 borg[12641]: Chunk index:                     486                  496
-мар 13 19:49:48 deb12 borg[12641]: ------------------------------------------------------------------------------
-мар 13 19:49:52 deb12 systemd[1]: borg-backup.service: Deactivated successfully.
-░░ Subject: Unit succeeded
-░░ Defined-By: systemd
-░░ Support: https://www.debian.org/support
-░░ 
-░░ The unit borg-backup.service has successfully entered the 'dead' state.
-мар 13 19:49:52 deb12 systemd[1]: Finished borg-backup.service - Borg Backup.
-░░ Subject: Запуск юнита borg-backup.service завершен
-░░ Defined-By: systemd
-░░ Support: https://www.debian.org/support
-░░ 
-░░ Процесс запуска юнита borg-backup.service был завершен.
-░░ 
-░░ Результат: done.
-мар 13 19:49:52 deb12 systemd[1]: borg-backup.service: Consumed 3.935s CPU time.
-░░ Subject: Потребленные юнитом ресурсы
-░░ Defined-By: systemd
-░░ Support: https://www.debian.org/support
-░░ 
-░░ Юнит borg-backup.service завершен. Приводится статистика по потребленным им ресурсам.
+мар 13 19:49:45 deb12 systemd[1]: Starting borg-backup.service - Borg Backup...  
+░░ Subject: Начинается запуск юнита borg-backup.service  
+░░ Defined-By: systemd  
+░░ Support: https://www.debian.org/support  
+░░   
+░░ Начат процесс запуска юнита borg-backup.service.  
+мар 13 19:49:48 deb12 borg[12641]: ------------------------------------------------------------------------------  
+мар 13 19:49:48 deb12 borg[12641]: Repository: ssh://borg@10.200.3.95/var/backup/client  
+мар 13 19:49:48 deb12 borg[12641]: Archive name: etc-2025-03-13_19:49:45  
+мар 13 19:49:48 deb12 borg[12641]: Archive fingerprint: fcd36df82c4ba6902fe7c74b726657edadec7c497de302ba8e6a7d577a8c12a1  
+мар 13 19:49:48 deb12 borg[12641]: Time (start): Thu, 2025-03-13 19:49:46  
+мар 13 19:49:48 deb12 borg[12641]: Time (end):   Thu, 2025-03-13 19:49:47  
+мар 13 19:49:48 deb12 borg[12641]: Duration: 0.83 seconds  
+мар 13 19:49:48 deb12 borg[12641]: Number of files: 504  
+мар 13 19:49:48 deb12 borg[12641]: Utilization of max. archive size: 0%  
+мар 13 19:49:48 deb12 borg[12641]: ------------------------------------------------------------------------------  
+мар 13 19:49:48 deb12 borg[12641]:                        Original size      Compressed size    Deduplicated size  
+мар 13 19:49:48 deb12 borg[12641]: This archive:                2.07 MB            928.62 kB            926.20 kB  
+мар 13 19:49:48 deb12 borg[12641]: All archives:                2.06 MB            928.00 kB            980.44 kB  
+мар 13 19:49:48 deb12 borg[12641]:                        Unique chunks         Total chunks  
+мар 13 19:49:48 deb12 borg[12641]: Chunk index:                     486                  496  
+мар 13 19:49:48 deb12 borg[12641]: ------------------------------------------------------------------------------  
+мар 13 19:49:52 deb12 systemd[1]: borg-backup.service: Deactivated successfully.  
+░░ Subject: Unit succeeded  
+░░ Defined-By: systemd  
+░░ Support: https://www.debian.org/support  
+░░   
+░░ The unit borg-backup.service has successfully entered the 'dead' state.  
+мар 13 19:49:52 deb12 systemd[1]: Finished borg-backup.service - Borg Backup.  
+░░ Subject: Запуск юнита borg-backup.service завершен  
+░░ Defined-By: systemd  
+░░ Support: https://www.debian.org/support  
+░░   
+░░ Процесс запуска юнита borg-backup.service был завершен.  
+░░   
+░░ Результат: done.  
+мар 13 19:49:52 deb12 systemd[1]: borg-backup.service: Consumed 3.935s CPU time.  
+░░ Subject: Потребленные юнитом ресурсы  
+░░ Defined-By: systemd  
+░░ Support: https://www.debian.org/support  
+░░   
+░░ Юнит borg-backup.service завершен. Приводится статистика по потребленным им ресурсам.  
